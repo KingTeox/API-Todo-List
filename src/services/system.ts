@@ -23,10 +23,12 @@ class system {
             console.log(`[Teox] <httpServer> Online port: 80`);
         });
 
-        console.log(`[Teox] <System> Starting *httpsServer*`);
-        servidores.httpsServer.listen(443, () => {
-            console.log(`[Teox] <httpsServer> Online port: 443`);
-        });
+        if (servidores.httpsServer) {
+            console.log(`[Teox] <System> Starting *httpsServer*`);
+            servidores.httpsServer.listen(443, () => {
+                console.log(`[Teox] <httpsServer> Online port: 443`);
+            });
+        };
     };
 };
 

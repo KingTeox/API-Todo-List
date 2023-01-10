@@ -22,7 +22,10 @@ class server {
         this.app = express();
         this.routers = new routers();
         this.db = new database();
-        this.httpsConfig = { key: fs.readFileSync(path.join(__dirname, "../../certs/key.pem"), "utf-8"), cert: fs.readFileSync(path.join(__dirname, "../../certs/cert.pem"), "utf-8") };
+        this.httpsConfig = { key: "Nao ativado", cert: "Nao ativado" };
+        if (process.env.HTTPS === "true") {
+            this.httpsConfig = { key: fs.readFileSync(path.join(__dirname, "../../certs/key.pem"), "utf-8"), cert: fs.readFileSync(path.join(__dirname, "../../certs/cert.pem"), "utf-8") };
+        };
     };
 
     async protection() {
@@ -118,14 +121,18 @@ class server {
         const httpServer = http.createServer(this.app);
 
         console.log(`[Teox] <Process> Loaded server *Http*`);
-        console.log(`=========================================================================`);
-        console.log(`[Teox] <Process> Loading server *Https*`);
         
-        const httpsServer = https.createServer(this.httpsConfig, this.app);
-
-        console.log(`[Teox] <Process> Loaded server *Https*`);
-        console.log(`=========================================================================`);
-        return { httpServer, httpsServer };
+        
+        if (process.env.HTTPS === "true") {
+            console.log(`=========================================================================`);
+            console.log(`[Teox] <Process> Loading server *Https*`);
+            
+            const httpsServer = https.createServer(this.httpsConfig, this.app);
+            
+            console.log(`[Teox] <Process> Loaded server *Https*`);
+            console.log(`=========================================================================`);
+            return { httpServer, httpsServer };
+        };  return { httpServer };
     };
 };
 
