@@ -9,7 +9,8 @@ Simplesmente uma api que e pra mostrar algumas coisas que sei sobre programaçao
 `npm i` ou `yarn`
 
 **Renomear .env.example** <br>
-Mudar **DATABASE_URL** em **.env**
+Mudar **DATABASE_URL** em **.env** por sua URI <br>
+[Consiga aqui](https://cloud.mongodb.com/v2/)
 
 **Renomear /certs/cert.pem.example** para **cert.pem** <br>
 Colocar as **informaçoes** do seu **certificado** em **/certs/cert.pem**
