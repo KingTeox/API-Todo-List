@@ -2,7 +2,7 @@ import { model, Schema } from "mongoose";
 
 const schemaTodo = new Schema({
     _id: { type: String, required: true },
-    date: { type: Date, default: new Date() },
+    date: { type: String, required: true },
     message: { type: String, required: true }
 });
 

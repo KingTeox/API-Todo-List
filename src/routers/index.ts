@@ -25,22 +25,22 @@ class routersManager {
             return res.json({ status: 200, message: "Server Response :)" });
         });
 
-        this.router.post("/list", (req, res) => {
-            return res.json({ status: "Falhou", message: "Desativado Temporariamente" });
+        this.router.post("/list", async (req, res) => {
+            const { id, message } = req.body;
+            if (!id) { return res.json({ status: "Falha", message: `Sem id no post` }); };
+            if (!message) { return res.json({ status: "Falha", message: `Sem message no post` }); };
+            return res.json(await this.db.create(id, message));
         });
 
-        this.router.delete("/list/:id", (req, res) => {
-
+        this.router.delete("/list/:id", async (req, res) => {
             const id = req.params.id;
-
-            return res.json({ status: "Falhou", message: "Desativado Temporariamente" });
+            return res.json(await this.db.delete(id));
         });
 
-        this.router.get("/list/:id", (req, res) => {
-            
+        this.router.get("/list/:id", async (req, res) => {
             const id = req.params.id;
-
-            return res.json({ status: "Falhou", message: "Desativado Temporariamente" });
+        
+            return res.json(await this.db.get(id));
         });
 
         this.router.get("/list/all", async (req, res) => {
@@ -51,6 +51,10 @@ class routersManager {
                 status: findAll.status,
                 documents: findAll.achados
             });
+        });
+
+        this.router.use((req, res, next) => {
+            return res.json({ status: "Falhou", message: `Nao achei esse endpoint` });
         });
 
         console.log(`[Teox] <Routers> Loaded returning all *Routers*`)

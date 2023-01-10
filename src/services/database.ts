@@ -27,24 +27,82 @@ class db {
     };
 
     async create(id: String, message: String) {
-        console.log(`[Teox] <Database> Document create`);
+        console.log(`[Teox] <Database> Criar documento`);
         await this.verificador();
+
+        const DocumentoCriar = await this.get(id);
+        const Hoje = new Date().toISOString().slice(0, 10);
         
+        if (DocumentoCriar.document) {
+            console.log(`[Teox] <Database> Documento ja existe pra criar outro`);
+            return { status: "Falhou", documento: DocumentoCriar.document };
+        };
+
+        const NovoDocumento = await modelTodo.create({
+            _id: id,
+            date: `${Hoje}`,
+            message
+        });
+        console.log(`[Teox] <Database> Documento Criado`);
+        await NovoDocumento.save();
+        console.log(`[Teox] <Database> Documento Salvado`);
+        return { status: "Criado", NovoDocumento };
     };
+
     async get(id: String) {
-        console.log(`[Teox] <Database> Document find`);
+        console.log(`[Teox] <Database> Encontrar documento`);
         await this.verificador();
         
+        const DocumentoProcurar = await modelTodo.findById(id);
+
+        if (DocumentoProcurar) {
+            return { status: "Sucesso", document: DocumentoProcurar };
+        };
+
+        if (id.length < 10) {
+            return { status: "Falhou", message: "Nao foi encontrado o documento com esse ID" };
+        };
+        
+        if (id.length != 10 && id.length > 10) {
+            return { status: "Falhou", message: "Data invalida" };
+        };
+
+        const data = new Date(id.toString());
+
+        const DocumentosMultiplos = await modelTodo.find({ date: data.toISOString().slice(0, 10) });
+
+        if (DocumentosMultiplos) {
+            console.log(`[Teox] <Database> Encontrado ${DocumentosMultiplos.length} criados em ${data.toISOString().slice(0, 10)}`);
+            return { status: "Sucesso", documents: DocumentosMultiplos };
+        };
+
+        return { status: "Falhou", message: "Nao foi encontrado o documento com esse ID" };
     };
 
     async delete(id: String) {
-        console.log(`[Teox] <Database> Document delete`);
+        console.log(`[Teox] <Database> Deletar documento`);
         await this.verificador();
 
+        const DocumentoDeletar = await this.get(id);
+
+        if (DocumentoDeletar.message) {
+            console.log(`[Teox] <Database> Documento nao existe pra deletar`);
+            return { status: "Falhou", message: DocumentoDeletar.message };
+        };
+        console.log(`[Teox] <Database> Documento encontrado deletando`);
+
+        const Deletado = await modelTodo.deleteOne({ _id: id });
+
+        if (Deletado.deletedCount === 0) {
+            console.log(`[Teox] <Database> Documento nao deletado aconteceu algum erro desconhecido`);
+            return { status: "Falhou", message: `Falhou em deletar o documento` };
+        };
+
+        return { status: "Sucesso", message: `Documento deletado com sucesso` };
     };
 
     async all() {
-        console.log(`[Teox] <Database> allDocuments lookup`);
+        console.log(`[Teox] <Database> Procurar todos os documentos`);
         await this.verificador();
 
         const allDocumentes = await modelTodo.find({});
