@@ -12,13 +12,17 @@ Simplesmente uma api que e pra mostrar algumas coisas que sei sobre programaçao
 Mudar **DATABASE_URL** em **.env** por sua URI <br>
 [Consiga aqui](https://cloud.mongodb.com/v2/)
 
+Caso deixe **Ativado** o HTTPS Faça isso
+
 **Renomear /certs/cert.pem.example** para **cert.pem** <br>
 Colocar as **informaçoes** do seu **certificado** em **/certs/cert.pem**
 
 **Renomear /certs/key.pem.example** para **key.pem** <br>
 Colocar a **chave** de **certificado** em **/certs/key.pem**
 
-Terminal: `npm build` depois `npm start`
+---
+
+Terminal: `npm run all`;
 
 # API:
 
