@@ -2,6 +2,23 @@
 
 Simplesmente uma api que e pra mostrar algumas coisas que sei sobre programaçao e database.
 
+# USE:
+
+**git clone https://github.com/KingTeox/API-Todo-List.git**
+
+`npm i` ou `yarn`
+
+**Renomear .env.example** <br>
+Mudar **DATABASE_URL** em **.env**
+
+**Renomear /certs/cert.pem.example** para **cert.pem** <br>
+Colocar as **informaçoes** do seu **certificado** em **/certs/cert.pem**
+
+**Renomear /certs/key.pem.example** para **key.pem** <br>
+Colocar a **chave** de **certificado** em **/certs/key.pem**
+
+Terminal: `npm build` depois `npm start`
+
 # API:
 
 ---
@@ -13,7 +30,7 @@ Simplesmente uma api que e pra mostrar algumas coisas que sei sobre programaçao
 
 ---
 
-# Rotas:
+# ROTAS:
 
 ![1](https://img.shields.io/badge/POST-https%3A%2F%2Fhostname.com%2Fapi%2Flist-blue) <br>
 ![2](https://img.shields.io/badge/GET-https%3A%2F%2Fhostname.com%2Fapi%2Flist%2Fall-brightgreen) <br>
