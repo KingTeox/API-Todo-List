@@ -1,3 +1,7 @@
+# Extras by Teox#0001
+yarn.lock
+*.pem
+
 # Logs
 logs
 *.log
