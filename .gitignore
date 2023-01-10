@@ -1,6 +1,7 @@
 # Extras by Teox#0001
 yarn.lock
 *.pem
+debug
 
 # Logs
 logs
