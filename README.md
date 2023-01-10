@@ -1,4 +1,4 @@
-# API-Todo-List
+# API Todo 
 
 Simplesmente uma api que e pra mostrar algumas coisas que sei sobre programaçao e database.
 
@@ -38,3 +38,8 @@ Terminal: `npm build` depois `npm start`
 ![3](https://img.shields.io/badge/GET-https%3A%2F%2Fhostname.com%2Fapi%2Flist%2F%7Bid%2Fdate%7D-brightgreen) <br>
 ![4](https://img.shields.io/badge/DELETE-https%3A%2F%2Fhostname.com%2Fapi%2Flist%2F%7Bid%7D-red) <br>
 
+# OBS:
+
+Use data nesse formato pra usar o endpoint de consultar multiplos documentos criados.
+
+ex: https://hostname.com/api/list/10-2-2023
