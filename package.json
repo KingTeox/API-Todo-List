@@ -1,0 +1,20 @@
+{
+  "name": "api-list",
+  "version": "1.0.0",
+  "description": "Simplesmente uma api que e pra mostrar algumas coisas que sei sobre programaçao e database.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KingTeox/API-Todo-List.git"
+  },
+  "keywords": [],
+  "author": "Teox#0001",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KingTeox/API-Todo-List/issues"
+  },
+  "homepage": "https://github.com/KingTeox/API-Todo-List#readme"
+}
