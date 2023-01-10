@@ -1,6 +1,6 @@
 # API-Todo-List
 
-Simplesmente uma api que usei pra mostrar algumas coisas que sei.
+Simplesmente uma api que e pra mostrar algumas coisas que sei sobre programaçao e database.
 
 # API:
 
