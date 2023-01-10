@@ -4,14 +4,22 @@
   "description": "Simplesmente uma api que e pra mostrar algumas coisas que sei sobre programaçao e database.",
   "main": "index.js",
   "scripts": {
+    "all": "cls && echo Script Build and Start && timeout 1 && cls && npm run build --silent && echo Start.. && timeout 1 && npm run start",
     "build": "tsc",
-    "start": "echo Iniciando servidor.. && cls && node ./debug/index.js && pause"
+    "start": "echo Starting server. && cls && node ./debug/index.js && pause"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KingTeox/API-Todo-List.git"
   },
-  "keywords": [],
+  "keywords": [
+    "Estudos",
+    "Todo",
+    "List",
+    "Database",
+    "MongoDB",
+    "Teox"
+  ],
   "author": "Teox#0001",
   "license": "ISC",
   "bugs": {

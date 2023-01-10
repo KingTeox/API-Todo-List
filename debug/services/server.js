@@ -30,7 +30,7 @@ class server {
     ;
     protection() {
         return __awaiter(this, void 0, void 0, function* () {
-            // coming soon
+            // em breve
         });
     }
     ;
@@ -74,11 +74,29 @@ class server {
             console.log(`[Teox] <Process> Loading server *Routers*`);
             // ROUTERS
             yield this.routers.loadRouters();
+            this.app.use((req, res, next) => {
+                console.log(`[Teox] <Monitor> [${req.method.toUpperCase()}] ${req.path} from ${req.ip}`);
+                next();
+            });
             this.app.use("/api", this.routers.router);
             this.app.all("/", (req, res) => { return res.json({ status: 200, message: "online" }); });
+            this.app.use((err, req, res, next) => {
+                console.log(`[Teox] <Process> ${err}`);
+                return res.status(500).json({ message: "Server Error" });
+            });
             console.log(`[Teox] <Process> Loaded server *Routers*`);
             console.log(`[Teox] <Process> Loading server *Servers*`);
             // SERVERS
+            console.log(`=========================================================================`);
+            console.log(`[Teox] <Process> Loading server *Database*`);
+            const status = yield this.db.start();
+            if (status) {
+                console.log(`[Teox] <Process> Loaded server *Database*`);
+            }
+            else {
+                console.log(`[Teox] <Process> Failed server connection *Database*`);
+            }
+            ;
             console.log(`=========================================================================`);
             console.log(`[Teox] <Process> Loading server *Http*`);
             const httpServer = http_1.default.createServer(this.app);

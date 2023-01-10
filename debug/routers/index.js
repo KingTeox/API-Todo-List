@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const database_1 = __importDefault(require("../services/database"));
 /* EXTRA ROUTERS
 
 Example: import extraRout from "./extraRout/index.ts";
@@ -21,6 +22,7 @@ Example: import extraRout from "./extraRout/index.ts";
 class routersManager {
     constructor() {
         this.router = express_1.default.Router();
+        this.db = new database_1.default();
     }
     ;
     loadRouters() {
@@ -29,6 +31,24 @@ class routersManager {
             this.router.all("/", (req, res) => {
                 return res.json({ status: 200, message: "Server Response :)" });
             });
+            this.router.post("/list", (req, res) => {
+                return res.json({ status: "Falhou", message: "Desativado Temporariamente" });
+            });
+            this.router.delete("/list/:id", (req, res) => {
+                const id = req.params.id;
+                return res.json({ status: "Falhou", message: "Desativado Temporariamente" });
+            });
+            this.router.get("/list/:id", (req, res) => {
+                const id = req.params.id;
+                return res.json({ status: "Falhou", message: "Desativado Temporariamente" });
+            });
+            this.router.get("/list/all", (req, res) => __awaiter(this, void 0, void 0, function* () {
+                const findAll = yield this.db.all();
+                return res.json({
+                    status: findAll.status,
+                    documents: findAll.achados
+                });
+            }));
             console.log(`[Teox] <Routers> Loaded returning all *Routers*`);
             return this.router;
         });
